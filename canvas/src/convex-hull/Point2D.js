@@ -16,12 +16,23 @@ export class Point2D {
     }
 }
 
-export function generatePoint2D(N) {
+export function generatePoint2D(N, xMax = 500, yMax = 500) {
     const result = []
-    for (let i = 0; i< N; i++) {
-        const x = Math.floor(Math.random() * 500)
-        const y = Math.floor(Math.random() * 500)
+    for (let i = 0; i < N; i++) {
+        const x = Math.floor(Math.random() * xMax)
+        const y = Math.floor(Math.random() * yMax)
         result.push(new Point2D(x, y, i))
+    }
+    return result
+}
+
+export function generatePoint2DByIndex(indexList, rowWidth = 500) {
+    const result = []
+    for (let i = 0; i < indexList.length; i++) {
+        const index = indexList[i]
+        const x = index % rowWidth
+        const y = Math.floor(index / rowWidth)
+        result.push(new Point2D(x, y, index))
     }
     return result
 }

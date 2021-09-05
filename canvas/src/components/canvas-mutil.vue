@@ -7,12 +7,12 @@ import { ref, onMounted, watch } from 'vue'
 import { 
     useCanvas,
     useDrawImage,
-    useGrayScale,
+    useMultiLevelImg,
 } from '../utils/canvas'
 
-async function drawGrayImg(ctx, src, width, height) {
+async function drawMutilImg(ctx, src, width, height) {
     await useDrawImage(ctx, src)
-    useGrayScale(ctx, width, height)
+    useMultiLevelImg(ctx, width, height)
 }
 
 export default {
@@ -27,10 +27,11 @@ export default {
     onMounted(async() => {
         const $canvas = canvas.value
         const ctx = useCanvas($canvas)
-        drawGrayImg(ctx, src, width, height)
-        
+
+        drawMutilImg(ctx, src, width, height)
+
         watch(() => props.src, (nv) => {
-          drawGrayImg(ctx, nv, width, height)
+          drawMutilImg(ctx, nv, width, height)
         })
     })
     return {

@@ -25,18 +25,18 @@ export function convexHull(points) {
         }
     })
     
-    console.log(points)
+    // console.log(points)
     hull.push(points[0])
     hull.push(points[1])
 
     for (let i = 2; i < points.length; i ++) {
         let top = hull.pop()
-        while(Point2D.ccw(hull.peek(), top, points[i]) <= 0) {
+        while(hull.peek() && Point2D.ccw(hull.peek(), top, points[i]) <= 0) {
             top = hull.pop()
         }
         hull.push(top)
         hull.push(points[i])
     }
-    console.log('hull: ', hull)
+    // console.log('hull: ', hull)
     return hull
 }

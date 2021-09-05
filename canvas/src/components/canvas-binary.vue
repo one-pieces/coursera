@@ -3,16 +3,17 @@
 </template>
 
 <script>
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { 
     useCanvas,
     useDrawImage,
-    useGrayScale,
+    useBinaryImg,
+    useClearCanvas,
 } from '../utils/canvas'
 
-async function drawGrayImg(ctx, src, width, height) {
-    await useDrawImage(ctx, src)
-    useGrayScale(ctx, width, height)
+async function drawBinaryImg(ctx, src, width, height) {
+  await useDrawImage(ctx, src)
+  useBinaryImg(ctx, width, height)
 }
 
 export default {
@@ -27,10 +28,11 @@ export default {
     onMounted(async() => {
         const $canvas = canvas.value
         const ctx = useCanvas($canvas)
-        drawGrayImg(ctx, src, width, height)
-        
+
+        drawBinaryImg(ctx, src, width, height)
+
         watch(() => props.src, (nv) => {
-          drawGrayImg(ctx, nv, width, height)
+          drawBinaryImg(ctx, nv, width, height)
         })
     })
     return {

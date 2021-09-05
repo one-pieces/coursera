@@ -14,8 +14,8 @@ export default {
     onMounted(() => {
       const ctx = useCanvas(canvas.value)
 
-      const pointList = generatePoint2D(10)
-      pointList.forEach(p => useDrawPoint(ctx, p))
+      const pointList = generatePoint2D(10, 500, 500)
+      pointList.forEach(p => useDrawPoint(ctx, p, false))
       const hull = convexHull(pointList)
       useDrawPath(ctx, hull)
     })

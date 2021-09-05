@@ -81,14 +81,14 @@ export function useUnionFind(data, rowWidth) {
         // 如果不是第一列，则检查当前 i 和其左侧是否连通
         if (col !== 0) {
             const left = i - 1
-            if (data[left] && data[i]) {
+            if (data[left] === data[i]) {
                 quickUnion.union(left, i)
             }
         }
-        // 如果不是第一行，则检查当前 i 和其左侧是否连通
+        // 如果不是第一行，则检查当前 i 和其上侧是否连通
         if (row !== 0) {
             const up = i - rowWidth
-            if (data[up] && data[i]) {
+            if (data[up] === data[i]) {
                 quickUnion.union(up, i)
             }
         }
